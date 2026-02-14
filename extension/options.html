@@ -2,7 +2,7 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>Smart Image Renamer - Settings</title>
+  <title>Smart Download Renamer - Settings</title>
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
@@ -197,8 +197,8 @@
 <body>
   <div class="container">
     <div class="header">
-      <h1>⚙️ Smart Image Renamer</h1>
-      <p>Configure your AI-powered image renaming (uses Hugging Face Inference Providers)</p>
+      <h1>⚙️ Smart Download Renamer</h1>
+      <p>Configure your AI-powered image + PDF renaming (uses Hugging Face Inference Providers)</p>
     </div>
     
     <div class="card setup-guide">
@@ -220,7 +220,7 @@
         <p>
           Visit <a href="https://huggingface.co/settings/tokens" target="_blank">huggingface.co/settings/tokens</a><br>
           → Click "New token"<br>
-          → Name: "Image Renamer"<br>
+          → Name: "Download Renamer"<br>
           → Permissions: enable <strong>Inference</strong> → <strong>Make calls to Inference Providers</strong><br>
           → Click "Generate"<br>
           → Copy token (starts with <code>hf_...</code>)
@@ -234,7 +234,7 @@
           Paste your token in the "API Token" field below<br>
           → Click "Save Settings"<br>
           → Click "Test Connection"<br>
-          → Done! Download an image to test!
+          → Done! Download an image or PDF to test!
         </p>
       </div>
     </div>
@@ -294,7 +294,41 @@
       </div>
     </div>
     
+    
     <div class="card">
+      <h3 class="card-title">PDF Renaming (Text Only)</h3>
+
+      <div class="checkbox-group">
+        <input type="checkbox" id="enablePdfRenaming">
+        <label for="enablePdfRenaming">Rename PDFs using extracted text (no PDF upload)</label>
+      </div>
+
+      <div class="form-group">
+        <label for="pdfMaxChars">Text sent to AI</label>
+        <select id="pdfMaxChars">
+          <option value="1200">~1,200 characters (fastest)</option>
+          <option value="2500">~2,500 characters (recommended)</option>
+          <option value="4000">~4,000 characters (more context)</option>
+          <option value="8000">~8,000 characters (slowest)</option>
+        </select>
+        <div class="hint">
+          We extract text locally from the beginning of the PDF and only send that text to the model.
+          Scanned/image-only PDFs may not have extractable text.
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="pdfMaxStreams">How deep to scan</label>
+        <select id="pdfMaxStreams">
+          <option value="6">Light (approx 1-2 pages)</option>
+          <option value="12">Medium (recommended)</option>
+          <option value="25">Deep (slower)</option>
+        </select>
+        <div class="hint">This is an approximation; PDFs store text in streams, not perfect “pages”.</div>
+      </div>
+    </div>
+
+<div class="card">
       <h3 class="card-title">Notifications</h3>
       
       <div class="checkbox-group">

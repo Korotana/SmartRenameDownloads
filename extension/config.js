@@ -1,6 +1,6 @@
 /**
- * Configuration for Smart Image Renamer
- * Uses Hugging Face Inference API (FREE!)
+ * Configuration for Smart Download Renamer
+ * Uses Hugging Face Inference Providers (OpenAI-compatible Chat Completions)
  */
 
 export const CONFIG = {
@@ -22,7 +22,7 @@ export const CONFIG = {
 
   // Storage keys
   STORAGE: {
-    SETTINGS: 'image_rename_settings_v1',
+    SETTINGS: 'image_rename_settings_v1', // keep existing key for seamless upgrades
     HISTORY: 'image_rename_history_v1',
     STATS: 'image_rename_stats_v1'
   },
@@ -31,13 +31,24 @@ export const CONFIG = {
   DEFAULTS: {
     hfToken: '',                    // User's HF token (free to get)
     model: 'Qwen/Qwen3-VL-8B-Instruct:fastest',
-    maxImageSize: 5 * 1024 * 1024,  // 5MB max
-    enableNotifications: true,
-    skipSmallImages: false,         // Rename all images
+
+    // Limits
+    maxImageSize: 5 * 1024 * 1024,  // 5MB max (images + PDFs)
     minImageSize: 50 * 1024,        // Skip images < 50KB (icons, etc)
-    addDateSuffix: false,           // Add date to filename
+
+    // Image options
+    skipSmallImages: false,
     cleanCaptions: true,            // Remove articles (a, an, the)
+    addDateSuffix: false,           // Add date to filename
     maxWords: 5,                    // Max words in filename
+
+    // PDF options (text-only: we extract locally; only extracted text is sent)
+    enablePdfRenaming: true,
+    pdfMaxChars: 2500,              // Max extracted chars to send to AI
+    pdfMaxStreams: 12,              // Approx "first few pages" (content streams)
+
+    // UX
+    enableNotifications: true,
     debug: false
   },
 
@@ -48,6 +59,11 @@ export const CONFIG = {
     'png': 'image/png',
     'webp': 'image/webp',
     'gif': 'image/gif'
+  },
+
+  // Supported document types
+  DOC_TYPES: {
+    'pdf': 'application/pdf'
   },
 
   // Rate limiting (Hugging Face free tier)

@@ -41,7 +41,7 @@ async function checkStatus() {
     statusEl.className = 'status configured';
     statusEl.innerHTML = `
       <strong>✓ Ready to Rename!</strong><br>
-      Download any image and watch it get a smart name
+      Download any image or PDF and watch it get a smart name
     `;
   }
 }
@@ -76,7 +76,7 @@ async function displayHistory() {
     container.innerHTML = `
       <div class="empty">
         No renames yet.<br>
-        Download an image to get started!
+        Download an image or PDF to get started!
       </div>
     `;
     return;
