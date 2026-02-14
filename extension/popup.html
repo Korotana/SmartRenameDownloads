@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      width: 350px;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+    }
+    .header {
+      padding: 24px;
+      text-align: center;
+    }
+    .header h1 {
+      font-size: 20px;
+      margin-bottom: 8px;
+    }
+    .header p {
+      font-size: 13px;
+      opacity: 0.9;
+    }
+    .content {
+      background: white;
+      color: #333;
+      border-radius: 16px 16px 0 0;
+      padding: 20px;
+    }
+    .stat-card {
+      background: #f8f9fa;
+      border-radius: 12px;
+      padding: 16px;
+      margin-bottom: 12px;
+    }
+    .stat-title {
+      font-size: 12px;
+      color: #666;
+      margin-bottom: 8px;
+      text-transform: uppercase;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+    }
+    .stat-value {
+      font-size: 28px;
+      font-weight: 700;
+      color: #667eea;
+    }
+    .stat-label {
+      font-size: 13px;
+      color: #999;
+      margin-top: 4px;
+    }
+    .history {
+      margin-top: 16px;
+    }
+    .history-title {
+      font-size: 14px;
+      font-weight: 600;
+      margin-bottom: 12px;
+      color: #333;
+    }
+    .history-item {
+      background: #f8f9fa;
+      border-radius: 8px;
+      padding: 10px;
+      margin-bottom: 8px;
+      font-size: 12px;
+    }
+    .history-item.success {
+      border-left: 3px solid #00AA00;
+    }
+    .history-item.error {
+      border-left: 3px solid #CC0000;
+    }
+    .original {
+      color: #999;
+      text-decoration: line-through;
+      margin-bottom: 4px;
+    }
+    .renamed {
+      color: #00AA00;
+      font-weight: 500;
+    }
+    .error-text {
+      color: #CC0000;
+      font-size: 11px;
+    }
+    .time {
+      color: #999;
+      font-size: 11px;
+      margin-top: 4px;
+    }
+    .empty {
+      text-align: center;
+      padding: 30px;
+      color: #999;
+      font-size: 13px;
+    }
+    .button {
+      display: block;
+      width: 100%;
+      padding: 12px;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: 500;
+      cursor: pointer;
+      margin-top: 12px;
+    }
+    .button:hover {
+      opacity: 0.9;
+    }
+    .status {
+      padding: 12px;
+      border-radius: 8px;
+      margin-bottom: 16px;
+      font-size: 13px;
+    }
+    .status.configured {
+      background: #e6f4ea;
+      color: #137333;
+      border-left: 4px solid #34a853;
+    }
+    .status.not-configured {
+      background: #fce8e6;
+      color: #c5221f;
+      border-left: 4px solid #ea4335;
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <h1>🖼️ Smart Image Renamer</h1>
+    <p>AI-powered, fast & free</p>
+  </div>
+  
+  <div class="content">
+    <div id="status" class="status"></div>
+    
+    <div class="stat-card">
+      <div class="stat-title">Today's Renames</div>
+      <div class="stat-value" id="todayCount">0</div>
+      <div class="stat-label">Successfully renamed</div>
+    </div>
+    
+    <div class="stat-card">
+      <div class="stat-title">Success Rate</div>
+      <div class="stat-value" id="successRate">0%</div>
+      <div class="stat-label">All time</div>
+    </div>
+    
+    <div class="history">
+      <div class="history-title">Recent Renames</div>
+      <div id="historyList"></div>
+    </div>
+    
+    <button class="button" id="openSettings">⚙️ Settings</button>
+  </div>
+  
+  <script src="popup.js" type="module"></script>
+</body>
+</html>

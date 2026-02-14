@@ -1,0 +1,18 @@
+{
+  "manifest_version": 3,
+  "name": "Smart Image Renamer",
+  "version": "1.0.0",
+  "description": "AI-powered image renaming using free Hugging Face API - fast, smart, and completely free!",
+  "permissions": ["downloads", "storage", "notifications"],
+  "host_permissions": ["https://router.huggingface.co/*","<all_urls>"],
+  "background": {
+    "service_worker": "background.js",
+    "type": "module"
+  },
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "Smart Image Renamer"
+  },
+  "options_page": "options.html",
+  "icons": { "16": "icon16.png", "48": "icon48.png", "128": "icon128.png" }
+}
